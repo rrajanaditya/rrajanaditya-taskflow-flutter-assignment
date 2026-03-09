@@ -25,7 +25,7 @@ lib/
 │   └── todos/
 │       ├── models/     # Data models and JSON serialization
 │       ├── providers/  # REST API logic and task state
-│       └── views/      # List and task creation UI
+│       └── views/      # List and task UI
 └── main.dart           # Application entry point
 ```
 
@@ -45,10 +45,16 @@ cd todo_firebase_app
 ```bash
 flutter pub get
 ```
-3. Configure Firebase:
-- Create a Firebase project and enable Authentication and Realtime Database.
-- Update the database URL in `lib/features/todos/providers/todo_provider.dart`.
-- Place your generated `google-services.json` file in the `android/app/` directory.
+
+3. Firebase Setup (Required):
+For security reasons, the Firebase configuration files are not included in this repository. You must connect your own Firebase project to run the application.
+- Create a new project in the Firebase Console.
+- Enable **Authentication** (Email/Password and Google providers).
+- Enable **Realtime Database** and set the rules to allow authenticated user access (`auth != null`).
+- Register an Android app with the package name `com.example.todoFirebaseApp`.
+- Download `google-services.json` and place it in the `android/app/` directory.
+- Install the FlutterFire CLI and run `flutterfire configure` in the root directory to generate the `lib/firebase_options.dart` file.
+- Open `lib/features/todos/providers/todo_provider.dart` and update the `_dbUrl` variable with your specific Realtime Database URL.
 
 4. Run the application:
 ```bash
